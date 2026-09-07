@@ -1,53 +1,90 @@
-# Deep Learning for Computer Vision · WI2022
+# Deep Learning for Computer Vision — Coursework
 
-密歇根大学课程学习与作业仓库。日常流程：**GitHub 打开 → Colab 编写并运行 → 保存回 GitHub 同一路径**。
+This repository records my programming assignments and experiments while independently studying the University of Michigan's publicly available Deep Learning for Computer Vision materials. I maintain it for review by my own instructor, with implementations, notebook results, and progress tracked through GitHub.
 
-[课程安排](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/schedule.html)
+## Course Information
 
-## 开始 Assignment 1
+- **Course:** Deep Learning for Computer Vision.
+- **Identifier in the supplied assignment materials:** EECS 498-007 / 598-005.
+- **Study reference:** Winter 2022.
+- **Resources:** [Course website](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/) · [Schedule](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/schedule.html).
 
-| 顺序 | 作业 | Colab 入口 | 保存到 GitHub 的文件路径 |
+The starter files retain their original labels and some older setup examples. Their exact correspondence to the Winter 2022 release has not yet been verified.
+
+## Assignments / Progress
+
+Status reflects the currently committed work; preparing a notebook does not mean completing an assignment.
+
+| Assignment | Content | Status | Review location |
 | --- | --- | --- | --- |
-| 1 | PyTorch 101 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Citnarfeng/umich-dlcv-wi2022/blob/main/colab/a1/pytorch101.ipynb) | `colab/a1/pytorch101.ipynb` |
-| 2 | k-Nearest Neighbors | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Citnarfeng/umich-dlcv-wi2022/blob/main/colab/a1/knn.ipynb) | `colab/a1/knn.ipynb` |
+| Assignment 1 | PyTorch 101; k-Nearest Neighbor | Prepared; implementation pending. TODO placeholders remain; working notebooks have no saved execution outputs. | [PyTorch 101](colab/a1/pytorch101.ipynb) · [k-NN](colab/a1/knn.ipynb) |
+| Assignment 2 | To be added | Not yet added to this repository | — |
+| Assignment 3 | To be added | Not yet added to this repository | — |
+| Assignment 4 | To be added | Not yet added to this repository | — |
+| Assignment 5 | To be added | Not yet added to this repository | — |
+| Assignment 6 | To be added | Not yet added to this repository | — |
+| Mini-project | To be determined | Not yet added to this repository | — |
 
-两个 Notebook 均包含必要的实现代码和辅助模块，准备阶段不需要 Drive、Git clone 或访问 GitHub 的令牌。CIFAR-10 仍会在运行相应作业单元格时下载；运行时文件和数据集不由“保存 Notebook”持久化。
+**For instructor review:** `colab/a1/` contains the working notebooks, including editable implementations, tests, and space for execution results. `assignments/a1/` is the initial starter snapshot, not evidence of completed work. Progress will be updated as implementations and results are committed.
 
-## 首次连接私有仓库
+## Repository Structure
 
-1. 登录你的 Google 账号，打开 [Colab 的 GitHub 浏览器](https://colab.research.google.com/github)。
-2. 勾选 **Include private repos**，在 GitHub 授权窗口登录 `Citnarfeng` 并授权 Colab。首次保存也可能要求写入授权。
-3. 搜索 `Citnarfeng/umich-dlcv-wi2022`，选择 `main`，打开 `colab/a1/` 下的 Notebook；授权后也可使用上面的按钮。
-
-如果入口提示找不到 Notebook，先检查是否登录正确 GitHub 账号、已允许 Colab 访问私有仓库。无需把仓库改为 Public，也无需在代码里填写密钥。
-
-## 每次学习
-
-1. 从本页入口打开 GitHub 上最新的 Notebook。需要 GPU 时，在 Colab 的运行时设置中选择 GPU。
-2. 按顺序运行准备部分。到 **编辑作业实现** 的 `%%writefile … .py` 单元格中填写 TODO。
-3. 修改实现后，重新运行该写文件单元格，然后运行相应题目的测试。**不要只在左侧文件栏修改 .py**；这些改动不会自动进入 Notebook。
-4. 选择 **File → Save a copy in GitHub**（部分界面为 Save a copy to GitHub）。仓库选 `Citnarfeng/umich-dlcv-wi2022`，分支选 `main`，路径严格使用上表的同名路径。填写简短提交说明，如 `a1: implement tensor slicing`。
-5. 到 GitHub 确认该文件出现新提交。下次从 GitHub 重新打开即可接着学习。普通保存快捷键不能作为已提交 GitHub 的确认。
-
-“Save a copy”使用同一仓库、分支和路径时会更新该文件，不必每次另起文件名。两个 Notebook 要分别保存。避免在多个 Colab 标签页同时编辑同一文件并交替保存。
-
-## .py 与 .ipynb 的关系
-
-原作业不是重复的两种格式：`.ipynb` 包含说明、实验和测试；`.py` 定义需要实现的函数。原 Notebook 导入这些函数，所以不能删除实现文件而不作适配。
-
-`colab/a1/` 是日常编辑入口：原 .py 内容已嵌入 `%%writefile` 单元格。运行时生成同名文件供原测试导入，保存 Notebook 就会保留实现。`assignments/a1/` 是本次接入时的原始快照，不会自动随 Colab 修改而更新；需要独立 .py 时使用 Notebook 底部的导出函数。
-
-原始作业要求提交时保持指定结构。Colab 适配版调整了启动部分，不直接作为已经符合课程要求的提交包；正式提交前应将答案整理回原模板并运行所需测试。
-
-## 文件与来源
+Current tracked structure:
 
 ```text
-colab/a1/         # 两个日常使用的 Colab Notebook
-assignments/a1/   # 本地 Assignment1 原始快照（Notebook、实现模块、eecs598）
+.
+├── README.md
+├── .gitignore
+├── assignments/
+│   └── a1/                  # Initial starter snapshot
+│       ├── pytorch101.ipynb
+│       ├── pytorch101.py
+│       ├── knn.ipynb
+│       ├── knn.py
+│       └── eecs598/          # Course-provided helper package
+└── colab/
+    └── a1/                  # Working notebooks for implementation and review
+        ├── pytorch101.ipynb
+        └── knn.ipynb
 ```
 
-当前文件来自本机已有的 `~other/Assignment1/`，接入过程未修改该目录。原文标注 EECS 498-007/598-005，并含旧学期路径示例；尚未核实这份素材与 WI2022 发布包完全一致。仓库按用户的 WI2022 学习目标命名，保留原题标题与来源差异。
+The intended longer-term organization is `assignment1` through `assignment6`, plus `mini_project`. These names are a plan: the repository currently uses the paths above, and later assignment directories have not been created here.
 
-进度：已接入工作流，尚未完成作业 TODO；未执行整份作业或训练。仅验证文件结构、嵌入源码一致性及准备阶段写文件行为。首次真实 Colab 会话的登录授权和 GPU/依赖兼容性需在 Colab 中确认。
+## Workflow
 
-[Google 官方：Colab 与 GitHub 的打开、私有仓库授权和保存说明](https://github.com/googlecolab/colabtools/blob/main/notebooks/colab-github-demo.ipynb)
+I use Google Colab to run and debug notebooks, and Git commits/pushes to maintain the work on GitHub. The current notebooks also support saving a commit directly from Colab.
+
+| Notebook | Run in Colab | Save path on branch `main` |
+| --- | --- | --- |
+| PyTorch 101 | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Citnarfeng/umich-dlcv-wi2022/blob/main/colab/a1/pytorch101.ipynb) | `colab/a1/pytorch101.ipynb` |
+| k-NN | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Citnarfeng/umich-dlcv-wi2022/blob/main/colab/a1/knn.ipynb) | `colab/a1/knn.ipynb` |
+
+1. Open the latest working notebook. For private-repository access, use the [Colab GitHub browser](https://colab.research.google.com/github), enable **Include private repos**, and authorize the appropriate GitHub account. An instructor also needs repository access to view private files.
+2. Run the setup cells in order. Edit the implementation inside the notebook's `%%writefile` cell, rerun that cell, then run the relevant tests. Changes made only to a runtime `.py` file are not saved into the notebook.
+3. Keep relevant outputs and written answers. Save each notebook separately using **File → Save a copy in GitHub**, selecting this repository, `main`, and the same path listed above. Confirm the new commit on GitHub; ordinary notebook saving does not confirm a GitHub commit.
+4. For local edits, pull the latest changes before editing, then commit and push the updated files. Avoid simultaneous edits to the same notebook in multiple sessions.
+
+The working notebooks embed the required Python modules and recreate them at runtime; setup does not require Drive or cloning the private repository. The starter snapshot does not automatically update with Colab saves. Each notebook includes an optional function to download its current `.py` implementation after the write-file cell has run. If an original-format submission is required, transfer answers to the required template and verify its structure before packaging.
+
+[Google's Colab–GitHub integration guide](https://github.com/googlecolab/colabtools/blob/main/notebooks/colab-github-demo.ipynb)
+
+## Course-Provided Code
+
+The `eecs598/` package and portions of the starter code, notebook instructions, and test scaffolding come from the original course materials. They are retained because they are needed to run the assignments. **I do not claim these components as my original implementation.** Their copies embedded in the Colab notebooks retain the same origin.
+
+My own work consists of the assignment-required implementations and modifications, written responses, experiments, and resulting notebook outputs as they are completed. Colab setup adaptations support this workflow and do not by themselves constitute completed assignment solutions.
+
+## Environment / Tools
+
+- Python 3, PyTorch, torchvision, and Matplotlib.
+- Google Colab for execution and debugging; select a GPU runtime for GPU-dependent exercises.
+- Git and GitHub for version control and instructor review.
+- CIFAR-10 for the k-NN exercise, downloaded when the relevant cells run.
+
+No pinned environment specification is currently included. Full execution in the current Colab environment has not yet been verified. Runtime files and downloaded datasets are temporary and are not preserved by saving a notebook to GitHub.
+
+## Disclaimer
+
+I am independently studying publicly available course materials. I am not representing myself as an enrolled University of Michigan student.
+
+This is my personal coursework repository, maintained for review by my own instructor. It is not an official University of Michigan repository or an official solution set. Original course materials and course-provided code are attributed to their respective authors.
