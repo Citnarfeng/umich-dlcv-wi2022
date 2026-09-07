@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Course runtime data and local work
+.codex_internal/
+.DS_Store
+cifar-10-batches-py/
+cifar-10-python.tar.gz
+*.pt
+*.pth
