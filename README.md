@@ -1,4 +1,4 @@
-# [Deep Learning for Computer Vision — University of Michigan](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/)
+### [Deep Learning for Computer Vision — University of Michigan](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/)
 
 | Assignment | Notebooks | Completed |
 | --- | --- | --- |
