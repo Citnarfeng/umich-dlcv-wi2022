@@ -217,7 +217,7 @@ def nn_forward_backward(
     exp_scores = torch.exp(scores)
     probs = exp_scores / exp_scores.sum(dim = 1, keepdim = True)
     idx = torch.arange(N, device = X.device)
-    loss = (-torch.log(probs[idx, y])).mean() + reg * (torch.sum(W1 * W1) + torch.sum(W2 * W2))
+    loss = (torch.log(exp_scores.sum(dim = 1)) - scores[idx, y]).mean() + reg * (torch.sum(W1 * W1) + torch.sum(W2 * W2))
     ###########################################################################
     #                             END OF YOUR CODE                            #
     ###########################################################################

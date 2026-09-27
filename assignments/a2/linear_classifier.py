@@ -367,7 +367,7 @@ def predict_linear_classifier(W: torch.Tensor, X: torch.Tensor):
     - y_pred: PyTorch int64 tensor of shape (N,) giving predicted labels for each
       elemment of X. Each element of y_pred should be between 0 and C - 1.
     """
-    y_pred = torch.zeros(X.shape[0], dtype=torch.int64)
+    y_pred = torch.zeros(X.shape[0], dtype = torch.int64)
     ###########################################################################
     # TODO:                                                                   #
     # Implement this method. Store the predicted labels in y_pred.            #
@@ -453,8 +453,8 @@ def test_one_param_set(
 
     # Replace "pass" statement with your code
     cls.train(data_dict["X_train"], data_dict["y_train"], learning_rate = lr, reg = reg, num_iters = num_iters)
-    train_acc = 100 * (cls.predict(data_dict["X_train"]) == data_dict["y_train"]).double().mean().item()
-    val_acc = 100 * (cls.predict(data_dict["X_val"]) == data_dict["y_val"]).double().mean().item()
+    train_acc = 100 * (cls.predict(data_dict["X_train"]) == data_dict["y_train"]).float().mean().item()
+    val_acc = 100 * (cls.predict(data_dict["X_val"]) == data_dict["y_val"]).float().mean().item()
     ############################################################################
     #                            END OF YOUR CODE                              #
     ############################################################################
@@ -507,7 +507,7 @@ def softmax_loss_naive(
         scores -= scores.max()
         exp_scores = torch.exp(scores)
         probs = exp_scores / exp_scores.sum()
-        loss -= torch.log(probs[y[i]])
+        loss += torch.log(exp_scores.sum()) - scores[y[i]]
         for j in range(num_classes):
             dW[ : , j] += probs[j] * X[i]
         dW[ : , y[i]] -= X[i]
