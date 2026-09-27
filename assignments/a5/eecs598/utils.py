@@ -185,6 +185,9 @@ def attention_visualizer(img, attn_weights, token):
     masked_img = cv2.addWeighted(attn_weights, 0.5, img_copy, 0.5, 0)
     img_copy = np.concatenate((np.zeros((25, W, 3)), masked_img), axis=0)
 
+    # OpenCV 5 requires an 8-bit image for text drawing.
+    img_copy = (np.clip(img_copy, 0, 1) * 255).astype(np.uint8)
+
     # Add text
     cv2.putText(
         img_copy,
