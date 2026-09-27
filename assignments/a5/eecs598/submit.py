@@ -35,7 +35,7 @@ _A4_FILES = [
 ]
 
 _A5_FILES = [
-    
+
     "transformers.py",
     "Transformers.ipynb",
     "rnn_lstm_captioning.py",
@@ -43,7 +43,7 @@ _A5_FILES = [
     # result files
     "transformer.pt",
     "rnn_lstm_attention_submission.pt",
-    
+
 ]
 
 _A6_FILES = [

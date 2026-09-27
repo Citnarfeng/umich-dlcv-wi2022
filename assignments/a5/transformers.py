@@ -257,10 +257,10 @@ class SelfAttention(nn.Module):
         super().__init__()
 
         """
-        This class encapsulates the implementation of self-attention layer. We map 
-        the input query, key, and value using MLP layers and then use 
+        This class encapsulates the implementation of self-attention layer. We map
+        the input query, key, and value using MLP layers and then use
         scaled_dot_product_no_loop_batch to the final output.
-        
+
         args:
             dim_in: an int value for input sequence embedding dimension
             dim_q: an int value for output dimension of query and ley vector
@@ -339,19 +339,19 @@ class MultiHeadAttention(nn.Module):
         super().__init__()
 
         """
-        
+
         A naive implementation of the MultiheadAttention layer for Transformer model.
         We use multiple SelfAttention layers parallely on the same input and then concat
-        them to into a single tensor. This Tensor is then passed through an MLP to 
-        generate the final output. The input shape will look like (N, K, M) where  
-        N is the batch size, K is the batch size and M is the sequence embedding  
+        them to into a single tensor. This Tensor is then passed through an MLP to
+        generate the final output. The input shape will look like (N, K, M) where
+        N is the batch size, K is the batch size and M is the sequence embedding
         dimension.
         args:
             num_heads: int value specifying the number of heads
             dim_in: int value specifying the input dimension of the query, key
                 and value. This will be the input dimension to each of the
                 SingleHeadAttention blocks
-            dim_out: int value specifying the output dimension of the complete 
+            dim_out: int value specifying the output dimension of the complete
                 MultiHeadAttention block
 
 
@@ -434,15 +434,15 @@ class LayerNormalization(nn.Module):
     def __init__(self, emb_dim: int, epsilon: float = 1e-10):
         super().__init__()
         """
-        The class implements the Layer Normalization for Linear layers in 
-        Transformers.  Unlike BathcNorm ,it estimates the normalization statistics 
-        for each element present in the batch and hence does not depend on the  
+        The class implements the Layer Normalization for Linear layers in
+        Transformers.  Unlike BathcNorm ,it estimates the normalization statistics
+        for each element present in the batch and hence does not depend on the
         complete batch.
-        The input shape will look something like (N, K, M) where N is the batch 
-        size, K is the sequence length and M is the sequence length embedding. We 
-        compute the  mean with shape (N, K) and standard deviation with shape (N, K) 
+        The input shape will look something like (N, K, M) where N is the batch
+        size, K is the sequence length and M is the sequence length embedding. We
+        compute the  mean with shape (N, K) and standard deviation with shape (N, K)
         and use them to normalize each sequence.
-        
+
         args:
             emb_dim: int representing embedding dimension
             epsilon: float value
@@ -484,7 +484,7 @@ class LayerNormalization(nn.Module):
         # TODO: Implement the forward pass of the LayerNormalization layer.      #
         # Compute the mean and standard deviation of input and use these to      #
         # normalize the input. Further, use self.gamma and self.beta to scale    #
-        # these and shift this normalized input. Don't use torch.std to compute  # 
+        # these and shift this normalized input. Don't use torch.std to compute  #
         # the standard deviation.                                                #
         ##########################################################################
         # Replace "pass" statement with your code
@@ -501,18 +501,18 @@ class FeedForwardBlock(nn.Module):
         super().__init__()
 
         """
-        An implementation of the FeedForward block in the Transformers. We pass  
-        the input through stacked 2 MLPs and 1 ReLU layer. The forward pass has  
+        An implementation of the FeedForward block in the Transformers. We pass
+        the input through stacked 2 MLPs and 1 ReLU layer. The forward pass has
         following architecture:
-        
+
         linear - relu -linear
-        
-        The input will have a shape of (N, K, M) where N is the batch size, K is 
-        the sequence length and M is the embedding dimension. 
-        
+
+        The input will have a shape of (N, K, M) where N is the batch size, K is
+        the sequence length and M is the embedding dimension.
+
         args:
             inp_dim: int representing embedding dimension of the input tensor
-                     
+
             hidden_dim_feedforward: int representing the hidden dimension for
                 the feedforward block
         """
@@ -565,27 +565,27 @@ class EncoderBlock(nn.Module):
     ):
         super().__init__()
         """
-        This class implements the encoder block for the Transformer model, the 
-        original paper used 6 of these blocks sequentially to train the final model. 
-        Here, we will first initialize the required layers using the building  
-        blocks we have already  implemented, and then finally write the forward     
-        pass using these initialized layers, residual connections and dropouts.        
-        
+        This class implements the encoder block for the Transformer model, the
+        original paper used 6 of these blocks sequentially to train the final model.
+        Here, we will first initialize the required layers using the building
+        blocks we have already  implemented, and then finally write the forward
+        pass using these initialized layers, residual connections and dropouts.
+
         As shown in the Figure 1 of the paper attention is all you need
         https://arxiv.org/pdf/1706.03762.pdf, the encoder consists of four components:
-        
+
         1. MultiHead Attention
         2. FeedForward layer
         3. Residual connections after MultiHead Attention and feedforward layer
         4. LayerNorm
-        
+
         The architecture is as follows:
-        
-       inp - multi_head_attention - out1 - layer_norm(out1 + inp) - dropout - out2 \ 
+
+       inp - multi_head_attention - out1 - layer_norm(out1 + inp) - dropout - out2 \
         - feedforward - out3 - layer_norm(out3 + out2) - dropout - out
-        
-        Here, inp is input of the MultiHead Attention of shape (N, K, M), out1, 
-        out2 and out3 are the outputs of the corresponding layers and we add these 
+
+        Here, inp is input of the MultiHead Attention of shape (N, K, M), out1,
+        out2 and out3 are the outputs of the corresponding layers and we add these
         outputs to their respective inputs for implementing residual connections.
 
         args:
@@ -595,7 +595,7 @@ class EncoderBlock(nn.Module):
             emb_dim: int value specifying the embedding dimension of the input
                 sequence
 
-            feedforward_dim: int value specifying the number of hidden units in the 
+            feedforward_dim: int value specifying the number of hidden units in the
                 FeedForward layer of Transformer
 
             dropout: float value specifying the dropout value
@@ -710,48 +710,48 @@ class DecoderBlock(nn.Module):
             )
 
         """
-        The function implements the DecoderBlock for the Transformer model. In the 
-        class we learned about encoder only model that can be used for tasks like 
-        sequence classification but for more complicated tasks like sequence to 
-        sequence we need a decoder network that can transformt the output of the 
-        encoder to a target sequence. This kind of architecture is important in 
-        tasks like language translation where we have a sequence as input and a 
-        sequence as output. 
-        
+        The function implements the DecoderBlock for the Transformer model. In the
+        class we learned about encoder only model that can be used for tasks like
+        sequence classification but for more complicated tasks like sequence to
+        sequence we need a decoder network that can transformt the output of the
+        encoder to a target sequence. This kind of architecture is important in
+        tasks like language translation where we have a sequence as input and a
+        sequence as output.
+
         As shown in the Figure 1 of the paper attention is all you need
-        https://arxiv.org/pdf/1706.03762.pdf, the encoder consists of 5 components:   
-        
+        https://arxiv.org/pdf/1706.03762.pdf, the encoder consists of 5 components:
+
         1. Masked MultiHead Attention
         2. MultiHead Attention
         3. FeedForward layer
         4. Residual connections after MultiHead Attention and feedforward layer
-        5. LayerNorm        
-        
-        The Masked MultiHead Attention takes the target, masks it as per the 
-        function get_subsequent_mask and then gives the output as per the MultiHead  
-        Attention layer. Further, another Multihead Attention block here takes the  
-        encoder output and the output from Masked Multihead Attention layer giving  
-        the output that helps the model create interaction between input and 
-        targets. As this block helps in interation of the input and target, it  
+        5. LayerNorm
+
+        The Masked MultiHead Attention takes the target, masks it as per the
+        function get_subsequent_mask and then gives the output as per the MultiHead
+        Attention layer. Further, another Multihead Attention block here takes the
+        encoder output and the output from Masked Multihead Attention layer giving
+        the output that helps the model create interaction between input and
+        targets. As this block helps in interation of the input and target, it
         is also sometimes called the cross attention.
 
         The architecture is as follows:
-        
+
         inp - masked_multi_head_attention - out1 - layer_norm(inp + out1) - \
         dropout - (out2 and enc_out) -  multi_head_attention - out3 - \
         layer_norm(out3 + out2) - dropout - out4 - feed_forward - out5 - \
         layer_norm(out5 + out4) - dropout - out
-        
-        Here, out1, out2, out3, out4, out5 are the corresponding outputs for the 
-        layers, enc_out is the encoder output and we add these outputs to their  
+
+        Here, out1, out2, out3, out4, out5 are the corresponding outputs for the
+        layers, enc_out is the encoder output and we add these outputs to their
         respective inputs for implementing residual connections.
-        
+
         args:
             num_heads: int value representing number of heads
 
             emb_dim: int value representing embedding dimension
 
-            feedforward_dim: int representing hidden layers in the feed forward 
+            feedforward_dim: int representing hidden layers in the feed forward
                 model
 
             dropout: float representing the dropout value
@@ -876,7 +876,7 @@ class Decoder(nn.Module):
         first pass the input through stacked DecoderBlocks and then
         project the output to vocab_len which is required to get the
         actual sequence.
-        
+
         args:
             num_heads: Int representing number of heads in the MultiheadAttention
             for Transformer
@@ -985,13 +985,13 @@ class Transformer(nn.Module):
         """
         The class implements Transformer model with encoder and decoder. The input
         to the model is a tensor of shape (N, K) and the output is a tensor of shape
-        (N*O, V). Here, N is the batch size, K is the input sequence length, O is  
-        the output sequence length and V is the Vocabulary size. The input is passed  
-        through shared nn.Embedding layer and then added to input positonal 
+        (N*O, V). Here, N is the batch size, K is the input sequence length, O is
+        the output sequence length and V is the Vocabulary size. The input is passed
+        through shared nn.Embedding layer and then added to input positonal
         encodings. Similarily, the target is passed through the same nn.Embedding
         layer and added to the target positional encodings. The only difference
-        is that we take last but one  value in the target. The summed 
-        inputs(look at the code for detials) are then sent through the encoder and  
+        is that we take last but one  value in the target. The summed
+        inputs(look at the code for detials) are then sent through the encoder and
         decoder blocks  to get the  final output.
         args:
             num_heads: int representing number of heads to be used in Encoder
