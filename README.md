@@ -9,4 +9,6 @@
 | A5 | [Image Captioning](assignments/a5/rnn_lstm_captioning.ipynb) · [Transformers](assignments/a5/Transformers.ipynb) | Yes; Transformer validation token accuracy 81.90% |
 | A6 | [VAE](assignments/a6/variational_autoencoders.ipynb) · [GAN](assignments/a6/generative_adversarial_networks.ipynb) · [Network Visualization](assignments/a6/network_visualization.ipynb) · [Style Transfer](assignments/a6/style_transfer.ipynb) | Yes; notebooks and generated images verified |
 
+The `*_core.py` and `*_core.ipynb` files provide compact A1–A6 implementations and workflows. Core variants were statically checked only; the results above belong to the original notebooks.
+
 Course starter code and instructions are credited to the linked University of Michigan course. The A2 challenge uses manually specified templates rendered directly in the supplied loader format, rather than a web-GUI export.
